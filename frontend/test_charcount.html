@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试字数统计</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+        .char-count.warning {
+            color: #ff9800;
+        }
+        .char-count.danger {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>测试字数统计功能</h1>
+    
+    <div class="form-group">
+        <label>成果名称（最多 100 字）</label>
+        <input type="text" id="projectName" placeholder="请输入成果名称" maxlength="100">
+        <div class="char-count"><span id="projectNameCount">0</span>/100</div>
+    </div>
+    
+    <div class="form-group">
+        <label>团队分工（最多 500 字）</label>
+        <textarea id="teamRoles" rows="4" maxlength="500"></textarea>
+        <div class="char-count"><span id="teamRolesCount">0</span>/500</div>
+    </div>
+    
+    <div class="form-group">
+        <label>成果说明（最多 1000 字）</label>
+        <textarea id="projectDescription" rows="6" maxlength="1000"></textarea>
+        <div class="char-count"><span id="projectDescriptionCount">0</span>/1000</div>
+    </div>
+    
+    <div id="debug" style="margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 4px;">
+        <h3>调试信息：</h3>
+        <pre id="debugInfo"></pre>
+    </div>
+    
+    <script>
+        const debugInfo = document.getElementById('debugInfo');
+        const logs = [];
+        
+        function log(message) {
+            logs.push(message);
+            debugInfo.textContent = logs.join('\n');
+            console.log(message);
+        }
+        
+        log('页面加载完成');
+        
+        // 测试字数统计
+        const fields = [
+            { id: 'projectName', limit: 100 },
+            { id: 'teamRoles', limit: 500 },
+            { id: 'projectDescription', limit: 1000 }
+        ];
+        
+        fields.forEach(field => {
+            const input = document.getElementById(field.id);
+            const countDisplay = document.getElementById(field.id + 'Count');
+            
+            log(`检查字段 ${field.id}:`);
+            log(`  input 元素：${input ? '存在' : '不存在'}`);
+            log(`  countDisplay 元素：${countDisplay ? '存在' : '不存在'}`);
+            
+            if (input && countDisplay) {
+                input.addEventListener('input', () => {
+                    const count = input.value.length;
+                    log(`${field.id} 输入了 ${count} 字`);
+                    countDisplay.textContent = count;
+                    
+                    countDisplay.parentElement.classList.remove('warning', 'danger');
+                    if (count > field.limit * 0.9) {
+                        countDisplay.parentElement.classList.add('danger');
+                        log(`${field.id} 字数超过 90%，显示红色`);
+                    } else if (count > field.limit * 0.7) {
+                        countDisplay.parentElement.classList.add('warning');
+                        log(`${field.id} 字数超过 70%，显示橙色`);
+                    }
+                });
+                log(`  已添加 input 事件监听器`);
+            }
+        });
+        
+        log('字数统计设置完成');
+    </script>
+</body>
+</html>
