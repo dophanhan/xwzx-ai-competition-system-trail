@@ -9,6 +9,8 @@ let selectedFiles = [];
 const API_BASE = window.API_CONFIG?.BASE_URL || 'http://localhost:3000/api';
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('页面加载完成');
+    
     // 加载队伍列表
     loadTeams();
     
@@ -16,7 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
     setupFileUpload();
     
     // 绑定表单提交事件
-    document.getElementById('submission-form').addEventListener('submit', handleSubmit);
+    const form = document.getElementById('submission-form');
+    console.log('表单元素:', form);
+    if (form) {
+        form.addEventListener('submit', handleSubmit);
+        console.log('表单提交事件已绑定');
+    } else {
+        console.error('表单元素未找到!');
+    }
 });
 
 /**
@@ -184,9 +193,19 @@ function formatFileSize(bytes) {
  */
 function isValidUrl(string) {
     // 如果是空字符串，认为是有效的（可选字段）
-    if (!string || !string.trim()) return true;
+    if (!string || !string.trim()) {
+        console.log('URL 为空，验证通过');
+        return true;
+    }
     
     const trimmed = string.trim();
+    console.log('验证 URL:', trimmed);
+    
+    // 简单验证：包含点号且没有空格
+    if (trimmed.includes('.') && !trimmed.includes(' ')) {
+        console.log('URL 格式验证通过');
+        return true;
+    }
     
     // 尝试添加 https:// 前缀
     try {
@@ -195,8 +214,10 @@ function isValidUrl(string) {
         } else {
             new URL(trimmed);
         }
+        console.log('URL 验证通过');
         return true;
-    } catch (_) {
+    } catch (e) {
+        console.log('URL 验证失败:', e.message);
         return false;
     }
 }
