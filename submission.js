@@ -313,7 +313,7 @@ async function submitSubmission(formData) {
     }
     
     try {
-        const response = await fetch(`${API_BASE}/submission`, {
+        const response = await fetch(`${API_BASE}/api/submission`, {
             method: 'POST',
             // 注意：使用 FormData 时不需要设置 Content-Type，浏览器会自动设置
             body: formData
