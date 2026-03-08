@@ -180,11 +180,21 @@ function formatFileSize(bytes) {
 }
 
 /**
- * 验证 URL
+ * 验证 URL（支持无协议格式）
  */
 function isValidUrl(string) {
+    // 如果是空字符串，认为是有效的（可选字段）
+    if (!string || !string.trim()) return true;
+    
+    const trimmed = string.trim();
+    
+    // 尝试添加 https:// 前缀
     try {
-        new URL(string);
+        if (!trimmed.startsWith('http://') && !trimmed.startsWith('https://')) {
+            new URL('https://' + trimmed);
+        } else {
+            new URL(trimmed);
+        }
         return true;
     } catch (_) {
         return false;
@@ -206,6 +216,8 @@ function escapeHtml(text) {
 function handleSubmit(e) {
     e.preventDefault();
     
+    console.log('表单提交触发');
+    
     if (isSubmitting) {
         console.log('正在提交中，请勿重复点击');
         return;
@@ -215,6 +227,7 @@ function handleSubmit(e) {
     
     // 验证队伍名称
     const teamName = document.getElementById('teamName').value.trim();
+    console.log('队伍名称:', teamName);
     if (!teamName) {
         showError('请选择队伍名称');
         return;
@@ -225,6 +238,8 @@ function handleSubmit(e) {
     const teamRoles = document.getElementById('teamRoles').value.trim();
     const projectDescription = document.getElementById('projectDescription').value.trim();
     const projectLink = document.getElementById('projectLink').value.trim();
+    
+    console.log('表单数据:', { projectName, teamRoles, projectDescription, projectLink });
     
     // 验证必填字段
     if (!projectName) {
@@ -270,6 +285,8 @@ function handleSubmit(e) {
         files: selectedFiles
     };
     
+    console.log('准备提交:', submissionData);
+    
     // 提交到后端
     submitSubmission(submissionData);
 }
@@ -280,8 +297,12 @@ function handleSubmit(e) {
 async function submitSubmission(data) {
     isSubmitting = true;
     const submitBtn = document.getElementById('submitBtn');
+    const originalText = submitBtn.textContent;
     submitBtn.disabled = true;
     submitBtn.textContent = '提交中...';
+    
+    console.log('提交数据:', data);
+    console.log('API 地址:', `${API_BASE}/api/submission`);
     
     try {
         const response = await fetch(`${API_BASE}/api/submission`, {
@@ -292,19 +313,29 @@ async function submitSubmission(data) {
             body: JSON.stringify(data)
         });
         
+        console.log('响应状态:', response.status);
+        
         const result = await response.json();
+        console.log('响应结果:', result);
         
         if (result.success) {
             showSuccess('成果提交成功！');
+            // 重置表单
+            document.getElementById('submission-form').reset();
+            document.getElementById('teamName').value = '';
+            document.getElementById('selectedTeamText').textContent = '请选择已报名的队伍';
+            selectedFiles = [];
+            updateFileList();
         } else {
-            throw new Error(result.message || '提交失败');
+            throw new Error(result.message || result.error || '提交失败');
         }
     } catch (error) {
         console.error('提交失败:', error);
         showError(error.message || '提交失败，请稍后重试');
+    } finally {
         isSubmitting = false;
         submitBtn.disabled = false;
-        submitBtn.textContent = '提交成果';
+        submitBtn.textContent = originalText;
     }
 }
 
