@@ -133,7 +133,7 @@ function setupFileUpload() {
 /**
  * 处理选中的文件
  */
-function handleFiles(files) {
+async function handleFiles(files) {
     const maxFileSize = 20 * 1024 * 1024; // 20MB
     
     for (let file of files) {
@@ -142,14 +142,35 @@ function handleFiles(files) {
             continue;
         }
         
-        selectedFiles.push({
-            name: file.name,
-            size: file.size,
-            type: file.type
-        });
+        try {
+            // 读取文件为 base64
+            const base64 = await fileToBase64(file);
+            
+            selectedFiles.push({
+                name: file.name,
+                size: file.size,
+                type: file.type,
+                base64: base64
+            });
+        } catch (error) {
+            console.error('文件读取失败:', error);
+            showError(`文件 ${file.name} 读取失败`);
+        }
     }
     
     updateFileList();
+}
+
+/**
+ * 文件转 base64
+ */
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
 }
 
 /**
