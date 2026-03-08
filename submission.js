@@ -1,88 +1,95 @@
-// 成果提交表单处理脚本
-// 功能：处理文件上传和表单提交
+/**
+ * 成果提交页面脚本
+ */
 
-// 从配置文件加载 API 地址，如果没有则使用默认值
+let isSubmitting = false;
+let selectedFiles = [];
+
+// 从配置文件加载 API 地址
 const API_BASE = window.API_CONFIG?.BASE_URL || 'http://localhost:3000/api';
-const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
-let uploadedFiles = [];
-let isSubmitting = false; // 防止重复提交
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 加载队伍列表
+    loadTeams();
+    
+    // 设置文件上传
+    setupFileUpload();
+    
+    // 绑定表单提交事件
+    document.getElementById('submission-form').addEventListener('submit', handleSubmit);
+});
 
 /**
  * 加载已报名的队伍列表
  */
 async function loadTeams() {
+    const dropdown = document.getElementById('teamDropdown');
     const loadingEl = document.getElementById('loadingTeams');
-    const selectEl = document.getElementById('teamName');
     
     try {
-        console.log('正在加载队伍列表，API:', `${API_BASE}/teams`);
-        const response = await fetch(`${API_BASE}/teams`);
-        console.log('响应状态:', response.status);
+        const response = await fetch(`${API_BASE}/api/teams`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        });
         
         const result = await response.json();
-        console.log('响应数据:', result);
         
-        loadingEl.style.display = 'none';
-        
-        if (result.success) {
-            console.log('队伍数量:', result.data.length);
-            result.data.forEach(team => {
-                const option = document.createElement('option');
-                option.value = team.name;
-                option.textContent = team.name;
-                selectEl.appendChild(option);
-            });
+        if (result.success && result.data && result.data.length > 0) {
+            // 去重和去空
+            const uniqueTeams = [...new Set(result.data.map(t => t.name))]
+                .filter(name => name && name.trim());
             
-            if (result.data.length === 0) {
-                loadingEl.textContent = '暂无已报名的队伍';
-                loadingEl.style.display = 'block';
+            if (uniqueTeams.length === 0) {
+                dropdown.innerHTML = '<div class="no-teams">暂无报名队伍</div>';
+                return;
             }
+            
+            // 生成下拉选项
+            dropdown.innerHTML = uniqueTeams.map(name => 
+                `<div class="team-option" data-team="${escapeHtml(name)}">${escapeHtml(name)}</div>`
+            ).join('');
+            
+            // 绑定选择事件
+            dropdown.querySelectorAll('.team-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const teamName = this.getAttribute('data-team');
+                    selectTeam(teamName);
+                });
+            });
         } else {
-            console.error('加载失败:', result.message);
-            loadingEl.textContent = '加载失败，请手动输入';
-            loadingEl.style.display = 'block';
+            dropdown.innerHTML = '<div class="no-teams">暂无报名队伍，请先报名</div>';
         }
     } catch (error) {
-        console.error('加载队伍列表异常:', error);
-        loadingEl.textContent = '加载失败，请手动输入';
-        loadingEl.style.display = 'block';
+        console.error('加载队伍列表失败:', error);
+        dropdown.innerHTML = '<div class="no-teams">加载失败，请刷新重试</div>';
     }
 }
 
 /**
- * 设置字数统计功能
+ * 选择队伍
  */
-function setupCharCount() {
-    const fields = [
-        { id: 'projectName', limit: 100 },
-        { id: 'teamRoles', limit: 500 },
-        { id: 'projectDescription', limit: 1000 }
-    ];
-    
-    fields.forEach(field => {
-        const input = document.getElementById(field.id);
-        const countDisplay = document.getElementById(field.id + 'Count');
-        
-        input.addEventListener('input', () => {
-            const count = input.value.length;
-            countDisplay.textContent = count;
-            
-            // 更新样式
-            countDisplay.parentElement.classList.remove('warning', 'danger');
-            if (count > field.limit * 0.9) {
-                countDisplay.parentElement.classList.add('danger');
-            } else if (count > field.limit * 0.7) {
-                countDisplay.parentElement.classList.add('warning');
-            }
-        });
-    });
+function selectTeam(teamName) {
+    document.getElementById('teamName').value = teamName;
+    document.getElementById('selectedTeamText').textContent = teamName;
+    document.getElementById('teamDropdown').classList.remove('show');
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    setupFileUpload();
-    loadTeams();  // 加载队伍列表
-    setupCharCount();  // 设置字数统计
-    document.getElementById('submission-form').addEventListener('submit', handleSubmit);
+/**
+ * 切换下拉菜单显示
+ */
+document.getElementById('teamSelectBtn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    document.getElementById('teamDropdown').classList.toggle('show');
+});
+
+// 点击其他地方关闭下拉菜单
+document.addEventListener('click', function() {
+    document.getElementById('teamDropdown').classList.remove('show');
+});
+
+// 阻止下拉菜单内部点击冒泡
+document.getElementById('teamDropdown').addEventListener('click', function(e) {
+    e.stopPropagation();
 });
 
 /**
@@ -115,48 +122,25 @@ function setupFileUpload() {
 }
 
 /**
- * 处理选择的文件
- * @param {FileList} files - 文件列表
+ * 处理选中的文件
  */
 function handleFiles(files) {
+    const maxFileSize = 20 * 1024 * 1024; // 20MB
+    
     for (let file of files) {
-        if (file.size > MAX_FILE_SIZE) {
-            showError(`文件 "${file.name}" 超出 500MB 限制`);
+        if (file.size > maxFileSize) {
+            showError(`文件 ${file.name} 超过 20MB 限制`);
             continue;
         }
         
-        if (!uploadedFiles.find(f => f.name === file.name && f.size === file.size)) {
-            uploadedFiles.push(file);
-            simulateUpload(file);
-        }
+        selectedFiles.push({
+            name: file.name,
+            size: file.size,
+            type: file.type
+        });
     }
     
     updateFileList();
-}
-
-/**
- * 模拟上传进度显示
- * @param {File} file - 文件对象
- */
-function simulateUpload(file) {
-    const progressBar = document.getElementById('progressBar');
-    const progressFill = document.getElementById('progressFill');
-    
-    progressBar.classList.add('active');
-    
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += Math.random() * 15;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-            setTimeout(() => {
-                progressBar.classList.remove('active');
-                progressFill.style.width = '0%';
-            }, 500);
-        }
-        progressFill.style.width = progress + '%';
-    }, 100);
 }
 
 /**
@@ -164,52 +148,64 @@ function simulateUpload(file) {
  */
 function updateFileList() {
     const fileList = document.getElementById('fileList');
-    fileList.innerHTML = '';
     
-    uploadedFiles.forEach((file, index) => {
-        const fileItem = document.createElement('div');
-        fileItem.className = 'file-item';
-        fileItem.innerHTML = `
-            <div class="file-info">
-                <span class="file-name">${file.name}</span>
-                <span class="file-size">${formatFileSize(file.size)}</span>
-            </div>
-            <button type="button" class="btn-delete-file" onclick="removeFile(${index})">×</button>
-        `;
-        fileList.appendChild(fileItem);
-    });
+    if (selectedFiles.length === 0) {
+        fileList.innerHTML = '';
+        return;
+    }
+    
+    fileList.innerHTML = selectedFiles.map((file, index) => `
+        <div class="file-item">
+            <span>📎 ${file.name} (${formatFileSize(file.size)})</span>
+            <button type="button" class="btn-remove-file" onclick="removeFile(${index})">✕</button>
+        </div>
+    `).join('');
 }
 
 /**
- * 删除已上传的文件
- * @param {number} index - 文件索引
+ * 删除文件
  */
 function removeFile(index) {
-    uploadedFiles.splice(index, 1);
+    selectedFiles.splice(index, 1);
     updateFileList();
 }
 
 /**
  * 格式化文件大小
- * @param {number} bytes - 字节数
- * @returns {string} 格式化后的大小
  */
 function formatFileSize(bytes) {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
 }
 
 /**
- * 处理表单提交
- * @param {Event} e - 提交事件
+ * 验证 URL
+ */
+function isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}
+
+/**
+ * HTML 转义
+ */
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+/**
+ * 提交表单
  */
 function handleSubmit(e) {
     e.preventDefault();
     
-    // 防止重复提交
     if (isSubmitting) {
         console.log('正在提交中，请勿重复点击');
         return;
@@ -217,28 +213,30 @@ function handleSubmit(e) {
     
     hideMessages();
     
-    // 获取表单数据
+    // 验证队伍名称
     const teamName = document.getElementById('teamName').value.trim();
+    if (!teamName) {
+        showError('请选择队伍名称');
+        return;
+    }
+    
+    // 获取表单数据
     const projectName = document.getElementById('projectName').value.trim();
     const teamRoles = document.getElementById('teamRoles').value.trim();
     const projectDescription = document.getElementById('projectDescription').value.trim();
     const projectLink = document.getElementById('projectLink').value.trim();
     
     // 验证必填字段
-    if (!teamName) {
-        showError('请输入队伍名称');
-        return;
-    }
     if (!projectName) {
         showError('请输入成果名称');
         return;
     }
     if (!teamRoles) {
-        showError('请填写团队简要分工');
+        showError('请填写团队分工说明');
         return;
     }
     if (!projectDescription) {
-        showError('请填写成果简要说明');
+        showError('请填写成果说明');
         return;
     }
     
@@ -262,118 +260,93 @@ function handleSubmit(e) {
         return;
     }
     
-    // 验证至少有一个成果（链接或文件）
-    if (uploadedFiles.length === 0 && !projectLink) {
-        showError('请至少提供成果在线链接或上传本地附件');
-        return;
-    }
+    // 准备提交数据
+    const submissionData = {
+        teamName: teamName,
+        projectName: projectName,
+        teamRoles: teamRoles,
+        projectDescription: projectDescription,
+        projectLink: projectLink,
+        files: selectedFiles
+    };
     
-    // 使用 FormData 提交数据（支持文件上传）
-    const formData = new FormData();
-    formData.append('teamName', teamName);
-    formData.append('projectName', projectName);
-    formData.append('teamRoles', teamRoles);
-    formData.append('projectDescription', projectDescription);
-    formData.append('projectLink', projectLink);
-    formData.append('submittedAt', new Date().toISOString());
-    
-    // 添加文件到 FormData
-    uploadedFiles.forEach((file, index) => {
-        formData.append('files', file);
-    });
-    
-    submitSubmission(formData);
-}
-
-/**
- * 验证 URL 格式
- * @param {string} url - 待验证的 URL
- * @returns {boolean} 是否有效
- */
-function isValidUrl(url) {
-    try {
-        new URL(url);
-        return true;
-    } catch (_) {
-        return false;
-    }
+    // 提交到后端
+    submitSubmission(submissionData);
 }
 
 /**
  * 提交成果到后端
- * @param {FormData} formData - 表单数据
  */
-async function submitSubmission(formData) {
-    // 设置提交中状态
+async function submitSubmission(data) {
     isSubmitting = true;
-    const submitButton = document.querySelector('button[type="submit"]');
-    if (submitButton) {
-        submitButton.disabled = true;
-        submitButton.textContent = '提交中...';
-    }
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = '提交中...';
     
     try {
         const response = await fetch(`${API_BASE}/api/submission`, {
             method: 'POST',
-            // 注意：使用 FormData 时不需要设置 Content-Type，浏览器会自动设置
-            body: formData
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         });
         
         const result = await response.json();
         
-        if (response.ok) {
+        if (result.success) {
             showSuccess('成果提交成功！');
-            setTimeout(() => {
-                document.getElementById('success-modal').classList.add('active');
-            }, 500);
         } else {
-            showError(result.message || '提交失败，请稍后重试');
+            throw new Error(result.message || '提交失败');
         }
     } catch (error) {
-        console.error('Error:', error);
-        showError('网络错误，请检查后端服务是否启动');
-    } finally {
-        // 重置提交状态
+        console.error('提交失败:', error);
+        showError(error.message || '提交失败，请稍后重试');
         isSubmitting = false;
-        if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = '提交成果';
-        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = '提交成果';
     }
 }
 
 /**
- * 显示错误消息
- * @param {string} message - 错误消息
- */
-function showError(message) {
-    const errorDiv = document.getElementById('error-message');
-    errorDiv.textContent = message;
-    errorDiv.classList.add('active');
-}
-
-/**
  * 显示成功消息
- * @param {string} message - 成功消息
  */
 function showSuccess(message) {
-    const successDiv = document.getElementById('success-message');
-    successDiv.textContent = message;
-    successDiv.classList.add('active');
+    const modal = document.getElementById('success-modal');
+    modal.querySelector('h2').textContent = message;
+    modal.style.display = 'flex';
 }
 
 /**
- * 隐藏所有消息
+ * 显示错误消息
+ */
+function showError(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    errorDiv.style.cssText = 'background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 12px; border-radius: 8px; margin-bottom: 20px;';
+    
+    const form = document.getElementById('submission-form');
+    const existingError = form.querySelector('.error-message');
+    if (existingError) existingError.remove();
+    
+    form.insertBefore(errorDiv, form.firstChild);
+    setTimeout(() => errorDiv.remove(), 5000);
+}
+
+/**
+ * 隐藏错误消息
  */
 function hideMessages() {
-    document.getElementById('error-message').classList.remove('active');
-    document.getElementById('success-message').classList.remove('active');
+    const errorDiv = document.querySelector('.error-message');
+    if (errorDiv) errorDiv.remove();
 }
 
 /**
- * 关闭弹窗并跳转首页
+ * 关闭模态框并返回首页
  */
 function closeModalAndRedirect() {
-    document.getElementById('success-modal').classList.remove('active');
+    const modal = document.getElementById('success-modal');
+    modal.style.display = 'none';
     window.location.href = 'index.html';
 }
