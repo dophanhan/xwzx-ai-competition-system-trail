@@ -1,129 +1,207 @@
-Ly8g5oql5ZCN6KGo5Y2V5aSE55CG6ISa5pysCi8vIOWKn+iDve+8mueuoeeQ
-humYn+WRmOS/oeaBr+a3u+WKoC/liKDpmaTvvIzlpITnkIbooajljZXmj5Dk
-uqQKCmxldCBtZW1iZXJDb3VudCA9IDA7CmNvbnN0IE1BWF9NRU1CRVJTID0g
-MzsKCi8vIOS7jumFjee9ruaWh+S7tuWKoOi9vSBBUEkg5Zyw5Z2A77yM5aaC
-5p6c5rKh5pyJ5YiZ5L2/55So6buY6K6k5YC8CmNvbnN0IEFQSV9CQVNFID0g
-d2luZG93LkFQSV9DT05GSUc/LkJBU0VfVVJMIHx8ICdodHRwOi8vbG9jYWxo
-b3N0OjMwMDAvYXBpJzsKCmRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ0RP
-TUNvbnRlbnRMb2FkZWQnLCBmdW5jdGlvbigpIHsKICAgIC8vIOWIneWni+WM
-lu+8mua3u+WKoOesrOS4gOS4qumYn+WRmAogICAgYWRkTWVtYmVyKCk7CiAg
-ICAKICAgIC8vIOe7keWumuS6i+S7tgogICAgZG9jdW1lbnQuZ2V0RWxlbWVu
-dEJ5SWQoJ2FkZE1lbWJlckJ0bicpLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNr
-JywgYWRkTWVtYmVyKTsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdy
-ZWdpc3RyYXRpb24tZm9ybScpLmFkZEV2ZW50TGlzdGVuZXIoJ3N1Ym1pdCcs
-IGhhbmRsZVN1Ym1pdCk7CiAgICB1cGRhdGVBZGRCdXR0b24oKTsKfSk7Cgov
-KioKICog5re75Yqg6Zif5ZGY6L6T5YWl5qGGCiAqLwpmdW5jdGlvbiBhZGRN
-ZW1iZXIoKSB7CiAgICBpZiAobWVtYmVyQ291bnQgPj0gTUFYX01FTUJFUlMp
-IHJldHVybjsKICAgIAogICAgbWVtYmVyQ291bnQrKzsKICAgIGNvbnN0IG1l
-bWJlckRpdiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpOwogICAg
-bWVtYmVyRGl2LmNsYXNzTmFtZSA9ICdtZW1iZXItaXRlbSc7CiAgICBtZW1i
-ZXJEaXYuaWQgPSBgbWVtYmVyLSR7bWVtYmVyQ291bnR9YDsKICAgIAogICAg
-bWVtYmVyRGl2LmlubmVySFRNTCA9IGAKICAgICAgICA8ZGl2IGNsYXNzPSJt
-ZW1iZXItaGVhZGVyIj4KICAgICAgICAgICAgPGg0PumYn+WRmCAke21lbWJl
-ckNvdW50fTwvaDQ+CiAgICAgICAgICAgICR7bWVtYmVyQ291bnQgPiAxID8g
-YDxidXR0b24gdHlwZT0iYnV0dG9uIiBjbGFzcz0iYnRuLXJlbW92ZSIgb25j
-bGljaz0icmVtb3ZlTWVtYmVyKCR7bWVtYmVyQ291bnR9KSI+5Yig6ZmkPC9i
-dXR0b24+YCA6ICcnfQogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xh
-c3M9ImZvcm0tZ3JvdXAiIHN0eWxlPSJtYXJnaW4tYm90dG9tOiAwOyI+CiAg
-ICAgICAgICAgIDxsYWJlbD7lp5PlkI0gPHNwYW4gY2xhc3M9InJlcXVpcmVk
-Ij4qPC9zcGFuPjwvbGFiZWw+CiAgICAgICAgICAgIDxpbnB1dCB0eXBlPSJ0
-ZXh0IiBpZD0ibWVtYmVyLW5hbWUtJHttZW1iZXJDb3VudH0iIHBsYWNlaG9s
-ZGVyPSLor7fovpPlhaXpmJ/lkZjlp5PlkI0iIHJlcXVpcmVkPgogICAgICAg
-IDwvZGl2PgogICAgYDsKICAgIAogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5
-SWQoJ3RlYW1NZW1iZXJzJykuYXBwZW5kQ2hpbGQobWVtYmVyRGl2KTsKICAg
-IHVwZGF0ZUFkZEJ1dHRvbigpOwp9CgovKioKICog5Yig6Zmk6Zif5ZGYCiAq
-IEBwYXJhbSB7bnVtYmVyfSBpZCAtIOmYn+WRmCBJRAogKi8KZnVuY3Rpb24g
-cmVtb3ZlTWVtYmVyKGlkKSB7CiAgICBjb25zdCBtZW1iZXJEaXYgPSBkb2N1
-bWVudC5nZXRFbGVtZW50QnlJZChgbWVtYmVyLSR7aWR9YCk7CiAgICBpZiAo
-bWVtYmVyRGl2KSB7CiAgICAgICAgbWVtYmVyRGl2LnJlbW92ZSgpOwogICAg
-ICAgIHJlbnVtYmVyTWVtYmVycygpOwogICAgICAgIHVwZGF0ZUFkZEJ1dHRv
-bigpOwogICAgfQp9CgovKioKICog6YeN5paw57yW5Y+36Zif5ZGY77yI5Yig
-6Zmk5Lit6Ze05p+Q5Liq6Zif5ZGY5ZCO77yJCiAqLwpmdW5jdGlvbiByZW51
-bWJlck1lbWJlcnMoKSB7CiAgICBjb25zdCBtZW1iZXJzID0gZG9jdW1lbnQu
-cXVlcnlTZWxlY3RvckFsbCgnLm1lbWJlci1pdGVtJyk7CiAgICBtZW1iZXJD
-b3VudCA9IDA7CiAgICBtZW1iZXJzLmZvckVhY2goKG1lbWJlciwgaW5kZXgp
-ID0+IHsKICAgICAgICBtZW1iZXJDb3VudCsrOwogICAgICAgIG1lbWJlci5p
-ZCA9IGBtZW1iZXItJHttZW1iZXJDb3VudH1gOwogICAgICAgIG1lbWJlci5x
-dWVyeVNlbGVjdG9yKCdoNCcpLnRleHRDb250ZW50ID0gYOmYn+WRmCAke21l
-bWJlckNvdW50fWA7CiAgICAgICAgCiAgICAgICAgY29uc3QgbmFtZUlucHV0
-ID0gbWVtYmVyLnF1ZXJ5U2VsZWN0b3IoJ2lucHV0W3R5cGU9InRleHQiXScp
-OwogICAgICAgIG5hbWVJbnB1dC5pZCA9IGBtZW1iZXItbmFtZS0ke21lbWJl
-ckNvdW50fWA7CiAgICAgICAgCiAgICAgICAgY29uc3QgcmVtb3ZlQnRuID0g
-bWVtYmVyLnF1ZXJ5U2VsZWN0b3IoJy5idG4tcmVtb3ZlJyk7CiAgICAgICAg
-aWYgKHJlbW92ZUJ0bikgewogICAgICAgICAgICBpZiAobWVtYmVyQ291bnQg
-PT09IDEpIHsKICAgICAgICAgICAgICAgIHJlbW92ZUJ0bi5yZW1vdmUoKTsK
-ICAgICAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgICAgIHJlbW92ZUJ0
-bi5zZXRBdHRyaWJ1dGUoJ29uY2xpY2snLCBgcmVtb3ZlTWVtYmVyKCR7bWVt
-YmVyQ291bnR9KWApOwogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfSk7
-Cn0KCi8qKgogKiDmm7TmlrDmt7vliqDmjInpkq7nirbmgIEKICovCmZ1bmN0
-aW9uIHVwZGF0ZUFkZEJ1dHRvbigpIHsKICAgIGNvbnN0IGFkZEJ0biA9IGRv
-Y3VtZW50LmdldEVsZW1lbnRCeUlkKCdhZGRNZW1iZXJCdG4nKTsKICAgIGlm
-IChtZW1iZXJDb3VudCA+PSBNQVhfTUVNQkVSUykgewogICAgICAgIGFkZEJ0
-bi5kaXNhYmxlZCA9IHRydWU7CiAgICAgICAgYWRkQnRuLnRleHRDb250ZW50
-ID0gJ+W3sui+vuS6uuaVsOS4iumZkO+8iDMg5Lq677yJJzsKICAgIH0gZWxz
-ZSB7CiAgICAgICAgYWRkQnRuLmRpc2FibGVkID0gZmFsc2U7CiAgICAgICAg
-YWRkQnRuLnRleHRDb250ZW50ID0gJysg5re75Yqg6Zif5ZGYJzsKICAgIH0K
-fQoKLyoqCiAqIOWkhOeQhuihqOWNleaPkOS6pAogKiBAcGFyYW0ge0V2ZW50
-fSBlIC0g5o+Q5Lqk5LqL5Lu2CiAqLwpmdW5jdGlvbiBoYW5kbGVTdWJtaXQo
-ZSkgewogICAgZS5wcmV2ZW50RGVmYXVsdCgpOwogICAgaGlkZU1lc3NhZ2Vz
-KCk7CiAgICAKICAgIC8vIOmqjOivgemYn+S8jeWQjeensAogICAgY29uc3Qg
-dGVhbU5hbWUgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndGVhbU5hbWUn
-KS52YWx1ZS50cmltKCk7CiAgICBpZiAoIXRlYW1OYW1lKSB7CiAgICAgICAg
-c2hvd0Vycm9yKCfor7fovpPlhaXpmJ/kvI3lkI3np7AnKTsKICAgICAgICBy
-ZXR1cm47CiAgICB9CiAgICAKICAgIC8vIOaUtumbhumYn+WRmOS/oeaBrwog
-ICAgY29uc3QgbWVtYmVycyA9IFtdOwogICAgZm9yIChsZXQgaSA9IDE7IGkg
-PD0gbWVtYmVyQ291bnQ7IGkrKykgewogICAgICAgIGNvbnN0IG5hbWUgPSBk
-b2N1bWVudC5nZXRFbGVtZW50QnlJZChgbWVtYmVyLW5hbWUtJHtpfWApLnZh
-bHVlLnRyaW0oKTsKICAgICAgICAKICAgICAgICBpZiAoIW5hbWUpIHsKICAg
-ICAgICAgICAgc2hvd0Vycm9yKGDor7fovpPlhaXpmJ/lkZggJHtpfSDnmoTl
-p5PlkI1gKTsKICAgICAgICAgICAgcmV0dXJuOwogICAgICAgIH0KICAgICAg
-ICAKICAgICAgICBtZW1iZXJzLnB1c2goeyBuYW1lIH0pOwogICAgfQogICAg
-CiAgICAvLyDpqozor4HpmJ/kvI3kurrmlbAKICAgIGlmIChtZW1iZXJzLmxl
-bmd0aCA8IDEgfHwgbWVtYmVycy5sZW5ndGggPiAzKSB7CiAgICAgICAgc2hv
-d0Vycm9yKCfpmJ/kvI3kurrmlbDlv4XpobvlnKggMS0zIOS6uuS5i+mXtCcp
-OwogICAgICAgIHJldHVybjsKICAgIH0KICAgIAogICAgLy8g5YeG5aSH5o+Q
-5Lqk5pWw5o2uCiAgICBjb25zdCBmb3JtRGF0YSA9IHsKICAgICAgICB0ZWFt
-TmFtZSwKICAgICAgICBtZW1iZXJzLAogICAgICAgIG1lbWJlckNvdW50OiBt
-ZW1iZXJzLmxlbmd0aCwgIC8vIOiHquWKqOiuoeeul+mYn+S8jeS6uuaVsAog
-ICAgICAgIHN1Ym1pdHRlZEF0OiBuZXcgRGF0ZSgpLnRvSVNPU3RyaW5nKCkK
-ICAgIH07CiAgICAKICAgIHN1Ym1pdFJlZ2lzdHJhdGlvbihmb3JtRGF0YSk7
-Cn0KCi8qKgogKiDmj5DkuqTmiqXlkI3ooajljZXliLDlkI7nq68KICogQHBh
-cmFtIHtPYmplY3R9IGRhdGEgLSDmiqXlkI3mlbDmja4KICovCmFzeW5jIGZ1
-bmN0aW9uIHN1Ym1pdFJlZ2lzdHJhdGlvbihkYXRhKSB7CiAgICB0cnkgewog
-ICAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goYCR7QVBJX0JB
-U0V9L3JlZ2lzdHJhdGlvbmAsIHsKICAgICAgICAgICAgbWV0aG9kOiAnUE9T
-VCcsCiAgICAgICAgICAgIGhlYWRlcnM6IHsKICAgICAgICAgICAgICAgICdD
-b250ZW50LVR5cGUnOiAnYXBwbGljYXRpb24vanNvbicKICAgICAgICAgICAg
-fSwKICAgICAgICAgICAgYm9keTogSlNPTi5zdHJpbmdpZnkoZGF0YSkKICAg
-ICAgICB9KTsKICAgICAgICAKICAgICAgICBjb25zdCByZXN1bHQgPSBhd2Fp
-dCByZXNwb25zZS5qc29uKCk7CiAgICAgICAgCiAgICAgICAgaWYgKHJlc3Bv
-bnNlLm9rKSB7CiAgICAgICAgICAgIHNob3dTdWNjZXNzKCfmiqXlkI3kv6Hm
-ga/mj5DkuqTmiJDlip/vvIEnKTsKICAgICAgICAgICAgc2V0VGltZW91dCgo
-KSA9PiB7CiAgICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJ
-ZCgnc3VjY2Vzcy1tb2RhbCcpLmNsYXNzTGlzdC5hZGQoJ2FjdGl2ZScpOwog
-ICAgICAgICAgICB9LCA1MDApOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAg
-ICAgIHNob3dFcnJvcihyZXN1bHQubWVzc2FnZSB8fCAn5o+Q5Lqk5aSx6LSl
-77yM6K+356iN5ZCO6YeN6K+VJyk7CiAgICAgICAgfQogICAgfSBjYXRjaCAo
-ZXJyb3IpIHsKICAgICAgICBjb25zb2xlLmVycm9yKCdFcnJvcjonLCBlcnJv
-cik7CiAgICAgICAgc2hvd0Vycm9yKCfnvZHnu5zplJnor6/vvIzor7fmo4Dm
-n6XlkI7nq6/mnI3liqHmmK/lkKblkK/liqgnKTsKICAgIH0KfQoKLyoqCiAq
-IOaYvuekuumUmeivr+a2iOaBrwogKiBAcGFyYW0ge3N0cmluZ30gbWVzc2Fn
-ZSAtIOmUmeivr+a2iOaBrwogKi8KZnVuY3Rpb24gc2hvd0Vycm9yKG1lc3Nh
-Z2UpIHsKICAgIGNvbnN0IGVycm9yRGl2ID0gZG9jdW1lbnQuZ2V0RWxlbWVu
-dEJ5SWQoJ2Vycm9yLW1lc3NhZ2UnKTsKICAgIGVycm9yRGl2LnRleHRDb250
-ZW50ID0gbWVzc2FnZTsKICAgIGVycm9yRGl2LmNsYXNzTGlzdC5hZGQoJ2Fj
-dGl2ZScpOwp9CgovKioKICog5pi+56S65oiQ5Yqf5raI5oGvCiAqIEBwYXJh
-bSB7c3RyaW5nfSBtZXNzYWdlIC0g5oiQ5Yqf5raI5oGvCiAqLwpmdW5jdGlv
-biBzaG93U3VjY2VzcyhtZXNzYWdlKSB7CiAgICBjb25zdCBzdWNjZXNzRGl2
-ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3N1Y2Nlc3MtbWVzc2FnZScp
-OwogICAgc3VjY2Vzc0Rpdi50ZXh0Q29udGVudCA9IG1lc3NhZ2U7CiAgICBz
-dWNjZXNzRGl2LmNsYXNzTGlzdC5hZGQoJ2FjdGl2ZScpOwp9CgovKioKICog
-6ZqQ6JeP5omA5pyJ5raI5oGvCiAqLwpmdW5jdGlvbiBoaWRlTWVzc2FnZXMo
-KSB7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXJyb3ItbWVzc2Fn
-ZScpLmNsYXNzTGlzdC5yZW1vdmUoJ2FjdGl2ZScpOwogICAgZG9jdW1lbnQu
-Z2V0RWxlbWVudEJ5SWQoJ3N1Y2Nlc3MtbWVzc2FnZScpLmNsYXNzTGlzdC5y
-ZW1vdmUoJ2FjdGl2ZScpOwp9CgovKioKICog5YWz6Zet5by556qX5bm26Lez
-6L2s6aaW6aG1CiAqLwpmdW5jdGlvbiBjbG9zZU1vZGFsQW5kUmVkaXJlY3Qo
-KSB7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3VjY2Vzcy1tb2Rh
-bCcpLmNsYXNzTGlzdC5yZW1vdmUoJ2FjdGl2ZScpOwogICAgd2luZG93Lmxv
-Y2F0aW9uLmhyZWYgPSAnaW5kZXguaHRtbCc7Cn0K
+// 报名表单处理脚本
+// 功能：管理队员信息添加/删除，处理表单提交
+
+let memberCount = 0;
+const MAX_MEMBERS = 3;
+
+// 从配置文件加载 API 地址，如果没有则使用默认值
+const API_BASE = window.API_CONFIG?.BASE_URL || 'http://localhost:3000/api';
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 初始化：添加第一个队员
+    addMember();
+    
+    // 绑定事件
+    document.getElementById('addMemberBtn').addEventListener('click', addMember);
+    document.getElementById('registration-form').addEventListener('submit', handleSubmit);
+    updateAddButton();
+});
+
+/**
+ * 添加队员输入框
+ */
+function addMember() {
+    if (memberCount >= MAX_MEMBERS) return;
+    
+    memberCount++;
+    const memberDiv = document.createElement('div');
+    memberDiv.className = 'member-item';
+    memberDiv.id = `member-${memberCount}`;
+    
+    memberDiv.innerHTML = `
+        <div class="member-header">
+            <h4>队员 ${memberCount}</h4>
+            ${memberCount > 1 ? `<button type="button" class="btn-remove" onclick="removeMember(${memberCount})">删除</button>` : ''}
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+            <label>姓名 <span class="required">*</span></label>
+            <input type="text" id="member-name-${memberCount}" placeholder="请输入队员姓名" required>
+        </div>
+    `;
+    
+    document.getElementById('teamMembers').appendChild(memberDiv);
+    updateAddButton();
+}
+
+/**
+ * 删除队员
+ * @param {number} id - 队员 ID
+ */
+function removeMember(id) {
+    const memberDiv = document.getElementById(`member-${id}`);
+    if (memberDiv) {
+        memberDiv.remove();
+        renumberMembers();
+        updateAddButton();
+    }
+}
+
+/**
+ * 重新编号队员（删除中间某个队员后）
+ */
+function renumberMembers() {
+    const members = document.querySelectorAll('.member-item');
+    memberCount = 0;
+    members.forEach((member, index) => {
+        memberCount++;
+        member.id = `member-${memberCount}`;
+        member.querySelector('h4').textContent = `队员 ${memberCount}`;
+        
+        const nameInput = member.querySelector('input[type="text"]');
+        nameInput.id = `member-name-${memberCount}`;
+        
+        const removeBtn = member.querySelector('.btn-remove');
+        if (removeBtn) {
+            if (memberCount === 1) {
+                removeBtn.remove();
+            } else {
+                removeBtn.setAttribute('onclick', `removeMember(${memberCount})`);
+            }
+        }
+    });
+}
+
+/**
+ * 更新添加按钮状态
+ */
+function updateAddButton() {
+    const addBtn = document.getElementById('addMemberBtn');
+    if (memberCount >= MAX_MEMBERS) {
+        addBtn.disabled = true;
+        addBtn.textContent = '已达人数上限（3 人）';
+    } else {
+        addBtn.disabled = false;
+        addBtn.textContent = '+ 添加队员';
+    }
+}
+
+/**
+ * 处理表单提交
+ * @param {Event} e - 提交事件
+ */
+function handleSubmit(e) {
+    e.preventDefault();
+    hideMessages();
+    
+    // 验证队伍名称
+    const teamName = document.getElementById('teamName').value.trim();
+    if (!teamName) {
+        showError('请输入队伍名称');
+        return;
+    }
+    
+    // 收集队员信息
+    const members = [];
+    for (let i = 1; i <= memberCount; i++) {
+        const name = document.getElementById(`member-name-${i}`).value.trim();
+        
+        if (!name) {
+            showError(`请输入队员 ${i} 的姓名`);
+            return;
+        }
+        
+        members.push({ name });
+    }
+    
+    // 验证队伍人数
+    if (members.length < 1 || members.length > 3) {
+        showError('队伍人数必须在 1-3 人之间');
+        return;
+    }
+    
+    // 准备提交数据
+    const formData = {
+        teamName,
+        members,
+        memberCount: members.length,  // 自动计算队伍人数
+        submittedAt: new Date().toISOString()
+    };
+    
+    submitRegistration(formData);
+}
+
+/**
+ * 提交报名表单到后端
+ * @param {Object} data - 报名数据
+ */
+async function submitRegistration(data) {
+    try {
+        const response = await fetch(`${API_BASE}/registration`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            showSuccess('报名信息提交成功！');
+            setTimeout(() => {
+                document.getElementById('success-modal').classList.add('active');
+            }, 500);
+        } else {
+            showError(result.message || '提交失败，请稍后重试');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showError('网络错误，请检查后端服务是否启动');
+    }
+}
+
+/**
+ * 显示错误消息
+ * @param {string} message - 错误消息
+ */
+function showError(message) {
+    const errorDiv = document.getElementById('error-message');
+    errorDiv.textContent = message;
+    errorDiv.classList.add('active');
+}
+
+/**
+ * 显示成功消息
+ * @param {string} message - 成功消息
+ */
+function showSuccess(message) {
+    const successDiv = document.getElementById('success-message');
+    successDiv.textContent = message;
+    successDiv.classList.add('active');
+}
+
+/**
+ * 隐藏所有消息
+ */
+function hideMessages() {
+    document.getElementById('error-message').classList.remove('active');
+    document.getElementById('success-message').classList.remove('active');
+}
+
+/**
+ * 关闭弹窗并跳转首页
+ */
+function closeModalAndRedirect() {
+    document.getElementById('success-modal').classList.remove('active');
+    window.location.href = 'index.html';
+}
