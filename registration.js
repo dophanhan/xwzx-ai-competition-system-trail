@@ -146,7 +146,7 @@ function handleSubmit(e) {
  */
 async function submitRegistration(data) {
     try {
-        const response = await fetch(`${API_BASE}/registration`, {
+        const response = await fetch(`${API_BASE}/api/registration`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
