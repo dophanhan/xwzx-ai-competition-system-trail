@@ -110,13 +110,16 @@ function handleSubmit(e) {
         return;
     }
     
-    // 收集队员信息
+    // 收集队员信息 - 直接从 DOM 获取实际队员数量
     const members = [];
-    for (let i = 1; i <= memberCount; i++) {
-        const name = document.getElementById(`member-name-${i}`).value.trim();
+    const memberElements = document.querySelectorAll('.member-item');
+    for (let i = 0; i < memberElements.length; i++) {
+        const member = memberElements[i];
+        const nameInput = member.querySelector('input[type="text"]');
+        const name = nameInput.value.trim();
         
         if (!name) {
-            showError(`请输入队员 ${i} 的姓名`);
+            showError(`请输入队员 ${i + 1} 的姓名`);
             return;
         }
         
