@@ -3,141 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 学位中心 AI 创新大赛</title>
+    <title>成果提交 - 学位中心 AI 创新大赛</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .team-select-container {
-            margin-bottom: 20px;
-        }
-        .team-select-btn {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px solid rgba(102, 126, 234, 0.3);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .team-select-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
-        }
-        .team-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(15, 23, 42, 0.98);
-            border: 2px solid rgba(102, 126, 234, 0.3);
-            border-radius: 8px;
-            max-height: 300px;
-            overflow-y: auto;
-            z-index: 100;
-            display: none;
-        }
-        .team-dropdown.show {
-            display: block;
-        }
-        .team-option {
-            padding: 12px 16px;
-            cursor: pointer;
-            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
-            color: #fff;
-        }
-        .team-option:hover {
-            background: rgba(102, 126, 234, 0.1);
-        }
-        .team-option:last-child {
-            border-bottom: none;
-        }
-        .select-wrapper {
-            position: relative;
-        }
-        .no-teams {
-            padding: 20px;
-            text-align: center;
-            color: #94a3b8;
-        }
-        .loading-teams {
-            padding: 20px;
-            text-align: center;
-            color: #667eea;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <div class="hero-section">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <p class="theme-text">I CAN I UP</p>
-                <h1>2026 学位中心 AI 创新大赛</h1>
-                <p class="subtitle">上传赛事成果，展示创新作品</p>
+                <h1>学位中心 AI 创新大赛</h1>
+                <p class="subtitle">成果提交</p>
             </div>
         </div>
         
         <main class="main-content">
             <div class="form-container">
+                <a href="index.html" class="back-btn">← 返回首页</a>
+                
+                <div id="error-message" class="error-message"></div>
+                <div id="success-message" class="success-message"></div>
+                
                 <form id="submission-form">
-                    <div class="form-group team-select-container">
+                    <div class="form-group">
                         <label>队伍名称 <span class="required">*</span></label>
-                        <div class="select-wrapper">
-                            <button type="button" class="team-select-btn" id="teamSelectBtn">
-                                <span id="selectedTeamText">请选择已报名的队伍</span>
-                                <span>▼</span>
-                            </button>
-                            <div class="team-dropdown" id="teamDropdown">
-                                <div class="loading-teams" id="loadingTeams">加载中...</div>
-                            </div>
-                            <input type="hidden" id="teamName" required>
-                        </div>
-                        <p class="form-note">从已报名的队伍中选择，如未找到请先报名</p>
+                        <select id="teamName" required>
+                            <option value="">请选择队伍</option>
+                        </select>
+                        <div id="loadingTeams" style="color: #666; font-size: 12px; margin-top: 4px;">正在加载队伍列表...</div>
                     </div>
                     
                     <div class="form-group">
                         <label>成果名称 <span class="required">*</span></label>
-                        <input type="text" id="projectName" placeholder="请输入成果名称" required>
-                        <p class="form-note">不超过 100 字</p>
+                        <input type="text" id="projectName" placeholder="请输入成果名称（最多 100 字）" required maxlength="100">
+                        <div class="char-count"><span id="projectNameCount">0</span>/100</div>
                     </div>
                     
                     <div class="form-group">
                         <label>团队简要分工 <span class="required">*</span></label>
-                        <textarea id="teamRoles" placeholder="请简要说明团队成员分工" rows="4" required></textarea>
-                        <p class="form-note">不超过 500 字</p>
+                        <textarea id="teamRoles" placeholder="请简要说明团队成员的分工情况（最多 500 字）" required maxlength="500" rows="4"></textarea>
+                        <div class="char-count"><span id="teamRolesCount">0</span>/500</div>
                     </div>
                     
                     <div class="form-group">
                         <label>成果简要说明 <span class="required">*</span></label>
-                        <textarea id="projectDescription" placeholder="请说明成果内容、创新点、技术实现等" rows="6" required></textarea>
-                        <p class="form-note">不超过 1000 字</p>
+                        <textarea id="projectDescription" placeholder="请简要说明成果内容、创新点等（最多 1000 字）" required maxlength="1000" rows="6"></textarea>
+                        <div class="char-count"><span id="projectDescriptionCount">0</span>/1000</div>
                     </div>
                     
                     <div class="form-group">
-                        <label>在线链接</label>
-                        <input type="url" id="projectLink" placeholder="https://example.com（如有在线演示或代码仓库）">
-                        <p class="form-note">可选，如 GitHub、演示地址等</p>
+                        <label>成果在线链接（可选）</label>
+                        <input type="url" id="projectLink" placeholder="例如：https://github.com/xxx 或 https://demo.example.com">
                     </div>
                     
                     <div class="form-group">
-                        <label>附件文件</label>
+                        <label>本地附件上传（可选，支持视频，最大 20MB）</label>
                         <div class="file-upload-area" id="fileUploadArea">
-                            <div class="file-upload-icon">📎</div>
-                            <p>点击或拖拽上传文件</p>
-                            <p class="file-upload-hint">支持 PDF、ZIP、RAR 等格式，单个文件不超过 20MB</p>
+                            <div class="file-icon">📁</div>
+                            <p>点击或拖拽文件到此处上传</p>
+                            <p class="file-hint">支持所有常见格式，单个文件最大 20MB</p>
+                            <input type="file" id="fileInput" style="display: none;" multiple>
                         </div>
-                        <input type="file" id="fileInput" multiple style="display: none;">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
                         <div class="file-list" id="fileList"></div>
                     </div>
                     
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary" id="submitBtn">
-                            提交成果
-                        </button>
-                        <a href="index.html" class="btn btn-secondary">返回首页</a>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">取消</button>
+                        <button type="submit" class="btn btn-primary">提交成果</button>
                     </div>
                 </form>
             </div>
@@ -145,7 +79,7 @@
         
         <footer class="footer">
             <p>&copy; 2026 学位中心 AI 创新大赛组委会</p>
-            <p>本网页由 AI 生成，如有问题还麻烦及时反馈</p>
+            <p class="ai-notice">本网页由 AI 生成，如有问题还麻烦及时反馈</p>
         </footer>
     </div>
     
@@ -153,7 +87,7 @@
         <div class="modal-content">
             <div class="modal-icon">✅</div>
             <h2>提交成功！</h2>
-            <p>您的成果已成功提交，感谢您的参与！</p>
+            <p>您的赛事成果已成功提交。</p>
             <button class="btn btn-primary" onclick="closeModalAndRedirect()">返回首页</button>
         </div>
     </div>
