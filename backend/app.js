@@ -526,3 +526,6 @@ if (require.main === module) {
         console.log(`成果提交表格 ID: ${FEISHU_SUBMISSION_TABLE_ID || '未配置'}`);
     });
 }
+
+// 👇 必须导出 app 实例，供 bootstrap 使用
+module.exports = app;

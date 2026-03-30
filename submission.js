@@ -14,11 +14,11 @@ let isSubmitting = false; // 防止重复提交
  */
 async function loadTeams() {
     const loadingEl = document.getElementById('loadingTeams');
-    const selectEl = document.getElementById('teamName');
+    const datalistEl = document.getElementById('teamList');
     
     // 检查元素是否存在
-    if (!loadingEl || !selectEl) {
-        console.error('找不到队伍选择框或加载提示元素');
+    if (!loadingEl || !datalistEl) {
+        console.error('找不到队伍列表元素');
         return;
     }
     
@@ -37,13 +37,16 @@ async function loadTeams() {
             result.data.forEach(team => {
                 const option = document.createElement('option');
                 option.value = team.name;
-                option.textContent = team.name;
-                selectEl.appendChild(option);
+                datalistEl.appendChild(option);
             });
             
             if (result.data.length === 0) {
-                loadingEl.textContent = '暂无已报名的队伍';
+                loadingEl.textContent = '暂无队伍，请手动输入';
                 loadingEl.style.display = 'block';
+            } else {
+                loadingEl.textContent = '可选择或手动输入队伍名称';
+                loadingEl.style.display = 'block';
+                loadingEl.style.color = '#999';
             }
         } else {
             console.error('加载失败:', result.message);
@@ -103,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     setupFileUpload();
-    loadTeams();  // 加载队伍列表
+    // loadTeams();  // 不再加载队伍列表，直接输入
     setupCharCount();  // 设置字数统计
     
     console.log('表单元素:', formEl);
@@ -307,17 +310,21 @@ function handleSubmit(e) {
         return;
     }
     
-    // 使用 JSON 格式提交数据（临时方案，避免后端 FormData 解析问题）
-    const submitData = {
-        teamName: teamName,
-        projectName: projectName,
-        teamRoles: teamRoles,
-        projectDescription: projectDescription,
-        projectLink: projectLink,
-        submittedAt: new Date().toISOString()
-    };
+    // 使用 FormData 提交数据（支持文件上传）
+    const formData = new FormData();
+    formData.append('teamName', teamName);
+    formData.append('projectName', projectName);
+    formData.append('teamRoles', teamRoles);
+    formData.append('projectDescription', projectDescription);
+    formData.append('projectLink', projectLink);
+    formData.append('submittedAt', new Date().toISOString());
     
-    submitSubmissionJSON(submitData);
+    // 添加文件到 FormData
+    uploadedFiles.forEach((file, index) => {
+        formData.append('files', file);
+    });
+    
+    submitSubmission(formData);
 }
 
 /**
@@ -335,10 +342,10 @@ function isValidUrl(url) {
 }
 
 /**
- * 提交成果到后端（JSON 格式）
- * @param {Object} data - 提交数据
+ * 提交成果到后端
+ * @param {FormData} formData - 表单数据
  */
-async function submitSubmissionJSON(data) {
+async function submitSubmission(formData) {
     // 设置提交中状态
     isSubmitting = true;
     const submitButton = document.querySelector('button[type="submit"]');
@@ -350,10 +357,8 @@ async function submitSubmissionJSON(data) {
     try {
         const response = await fetch(`${API_BASE}/submission`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            // 注意：使用 FormData 时不需要设置 Content-Type，浏览器会自动设置
+            body: formData
         });
         
         const result = await response.json();
