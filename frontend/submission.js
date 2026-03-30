@@ -1,5 +1,7 @@
 // 成果提交表单处理脚本
 // 功能：处理文件上传和表单提交
+// 版本：2026-03-30-BUGFIX-v2
+console.log('=== submission.js 已加载 - 版本 2026-03-30-BUGFIX-v2 ===');
 
 // 从配置文件加载 API 地址，如果没有则使用默认值
 const API_BASE = window.API_CONFIG?.BASE_URL || 'http://localhost:3000/api';

@@ -1,5 +1,7 @@
 // 报名表单处理脚本
 // 功能：管理队员信息添加/删除，处理表单提交
+// 版本：2026-03-30-BUGFIX-v2
+console.log('=== registration.js 已加载 - 版本 2026-03-30-BUGFIX-v2 ===');
 
 let memberCount = 0;
 const MAX_MEMBERS = 3;
