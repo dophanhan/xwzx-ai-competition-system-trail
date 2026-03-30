@@ -10,7 +10,7 @@ let uploadedFiles = [];
 let isSubmitting = false; // 防止重复提交
 
 /**
- * 加载已报名的队伍列表
+ * 加载已报名的队伍列表（去重去空）
  */
 async function loadTeams() {
     const loadingEl = document.getElementById('loadingTeams');
@@ -33,18 +33,30 @@ async function loadTeams() {
         loadingEl.style.display = 'none';
         
         if (result.success) {
-            console.log('队伍数量:', result.data.length);
+            // 去重去空处理
+            const teamNames = new Set();
             result.data.forEach(team => {
+                const name = team.name && team.name.trim();
+                if (name) {
+                    teamNames.add(name);
+                }
+            });
+            
+            console.log('去重后队伍数量:', teamNames.size);
+            
+            // 排序后添加到 datalist
+            const sortedNames = Array.from(teamNames).sort();
+            sortedNames.forEach(name => {
                 const option = document.createElement('option');
-                option.value = team.name;
+                option.value = name;
                 datalistEl.appendChild(option);
             });
             
-            if (result.data.length === 0) {
+            if (teamNames.size === 0) {
                 loadingEl.textContent = '暂无队伍，请手动输入';
                 loadingEl.style.display = 'block';
             } else {
-                loadingEl.textContent = '可选择或手动输入队伍名称';
+                loadingEl.textContent = `已加载 ${teamNames.size} 支队伍，可选择或手动输入`;
                 loadingEl.style.display = 'block';
                 loadingEl.style.color = '#999';
             }
@@ -106,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     setupFileUpload();
-    // loadTeams();  // 不再加载队伍列表，直接输入
+    loadTeams();  // 加载队伍列表（去重去空）
     setupCharCount();  // 设置字数统计
     
     console.log('表单元素:', formEl);
