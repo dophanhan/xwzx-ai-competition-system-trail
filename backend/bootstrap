@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+const http = require('http');
+
+// 启动主应用
+const app = require('./app.js');
+
+// 阿里云函数计算自定义运行时 - 必须监听 9000 端口
+const PORT = 9000;
+
+const server = http.createServer(app);
+
+server.listen(PORT, () => {
+  console.log(`Function started on port ${PORT}`);
+  console.log(`Health check: http://localhost:${PORT}/api/health`);
+});

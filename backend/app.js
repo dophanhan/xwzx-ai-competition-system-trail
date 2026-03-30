@@ -387,9 +387,9 @@ app.post('/api/registration', async (req, res) => {
         const tableData = {
             '队伍名称': data.teamName,
             '队伍人数': data.memberCount || data.members.length,
-            '队员 1 姓名': data.members[0]?.name || '',
-            '队员 2 姓名': data.members[1]?.name || '',
-            '队员 3 姓名': data.members[2]?.name || '',
+            '队员 1 姓名': (data.members && data.members[0]) ? data.members[0].name : '',
+            '队员 2 姓名': (data.members && data.members[1]) ? data.members[1].name : '',
+            '队员 3 姓名': (data.members && data.members[2]) ? data.members[2].name : '',
             '报名时间': new Date(data.submittedAt).toLocaleString('zh-CN')
         };
         

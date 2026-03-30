@@ -14,11 +14,11 @@ let isSubmitting = false; // 防止重复提交
  */
 async function loadTeams() {
     const loadingEl = document.getElementById('loadingTeams');
-    const selectEl = document.getElementById('teamName');
+    const datalistEl = document.getElementById('teamList');
     
     // 检查元素是否存在
-    if (!loadingEl || !selectEl) {
-        console.error('找不到队伍选择框或加载提示元素');
+    if (!loadingEl || !datalistEl) {
+        console.error('找不到队伍列表元素');
         return;
     }
     
@@ -37,13 +37,16 @@ async function loadTeams() {
             result.data.forEach(team => {
                 const option = document.createElement('option');
                 option.value = team.name;
-                option.textContent = team.name;
-                selectEl.appendChild(option);
+                datalistEl.appendChild(option);
             });
             
             if (result.data.length === 0) {
-                loadingEl.textContent = '暂无已报名的队伍';
+                loadingEl.textContent = '暂无队伍，请手动输入';
                 loadingEl.style.display = 'block';
+            } else {
+                loadingEl.textContent = '可选择或手动输入队伍名称';
+                loadingEl.style.display = 'block';
+                loadingEl.style.color = '#999';
             }
         } else {
             console.error('加载失败:', result.message);

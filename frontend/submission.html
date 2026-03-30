@@ -30,9 +30,10 @@
                 <form id="submission-form">
                     <div class="form-group">
                         <label>队伍名称 <span class="required">*</span></label>
-                        <select id="teamName" required>
-                            <option value="">请选择队伍</option>
-                        </select>
+                        <input type="text" id="teamName" list="teamList" placeholder="请选择或输入队伍名称" required>
+                        <datalist id="teamList">
+                            <!-- 动态加载队伍列表 -->
+                        </datalist>
                         <div id="loadingTeams" style="color: #666; font-size: 12px; margin-top: 4px;">正在加载队伍列表...</div>
                     </div>
                     
