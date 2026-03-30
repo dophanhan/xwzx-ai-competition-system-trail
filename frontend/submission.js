@@ -14,6 +14,12 @@ async function loadTeams() {
     const loadingEl = document.getElementById('loadingTeams');
     const selectEl = document.getElementById('teamName');
     
+    // 检查元素是否存在
+    if (!loadingEl || !selectEl) {
+        console.error('找不到队伍选择框或加载提示元素');
+        return;
+    }
+    
     try {
         console.log('正在加载队伍列表，API:', `${API_BASE}/teams`);
         const response = await fetch(`${API_BASE}/teams`);
@@ -63,6 +69,12 @@ function setupCharCount() {
         const input = document.getElementById(field.id);
         const countDisplay = document.getElementById(field.id + 'Count');
         
+        // 检查元素是否存在
+        if (!input || !countDisplay) {
+            console.warn(`找不到字段 ${field.id} 或其计数显示元素`);
+            return;
+        }
+        
         input.addEventListener('input', () => {
             const count = input.value.length;
             countDisplay.textContent = count;
@@ -79,10 +91,22 @@ function setupCharCount() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('页面加载完成');
+    
+    // 检查表单是否存在
+    const formEl = document.getElementById('submission-form');
+    if (!formEl) {
+        console.error('找不到 submission-form 表单元素');
+        return;
+    }
+    
     setupFileUpload();
     loadTeams();  // 加载队伍列表
     setupCharCount();  // 设置字数统计
-    document.getElementById('submission-form').addEventListener('submit', handleSubmit);
+    
+    console.log('表单元素:', formEl);
+    formEl.addEventListener('submit', handleSubmit);
+    console.log('表单提交事件已绑定');
 });
 
 /**
@@ -91,6 +115,12 @@ document.addEventListener('DOMContentLoaded', function() {
 function setupFileUpload() {
     const uploadArea = document.getElementById('fileUploadArea');
     const fileInput = document.getElementById('fileInput');
+    
+    // 检查元素是否存在
+    if (!uploadArea || !fileInput) {
+        console.error('找不到文件上传区域或文件输入框');
+        return;
+    }
     
     uploadArea.addEventListener('click', () => fileInput.click());
     
@@ -164,6 +194,13 @@ function simulateUpload(file) {
  */
 function updateFileList() {
     const fileList = document.getElementById('fileList');
+    
+    // 检查元素是否存在
+    if (!fileList) {
+        console.error('找不到文件列表元素');
+        return;
+    }
+    
     fileList.innerHTML = '';
     
     uploadedFiles.forEach((file, index) => {
@@ -348,8 +385,13 @@ async function submitSubmission(formData) {
  */
 function showError(message) {
     const errorDiv = document.getElementById('error-message');
-    errorDiv.textContent = message;
-    errorDiv.classList.add('active');
+    if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.classList.add('active');
+    } else {
+        console.error('找不到错误消息元素');
+        alert(message);
+    }
 }
 
 /**
@@ -358,16 +400,20 @@ function showError(message) {
  */
 function showSuccess(message) {
     const successDiv = document.getElementById('success-message');
-    successDiv.textContent = message;
-    successDiv.classList.add('active');
+    if (successDiv) {
+        successDiv.textContent = message;
+        successDiv.classList.add('active');
+    }
 }
 
 /**
  * 隐藏所有消息
  */
 function hideMessages() {
-    document.getElementById('error-message').classList.remove('active');
-    document.getElementById('success-message').classList.remove('active');
+    const errorDiv = document.getElementById('error-message');
+    const successDiv = document.getElementById('success-message');
+    if (errorDiv) errorDiv.classList.remove('active');
+    if (successDiv) successDiv.classList.remove('active');
 }
 
 /**

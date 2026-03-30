@@ -8,13 +8,31 @@ const MAX_MEMBERS = 3;
 const API_BASE = window.API_CONFIG?.BASE_URL || 'http://localhost:3000/api';
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('报名页面加载完成');
+    
     // 初始化：添加第一个队员
     addMember();
     
+    // 检查元素是否存在
+    const addBtn = document.getElementById('addMemberBtn');
+    const formEl = document.getElementById('registration-form');
+    
+    if (!addBtn) {
+        console.error('找不到添加队员按钮');
+        return;
+    }
+    
+    if (!formEl) {
+        console.error('找不到报名表单');
+        return;
+    }
+    
     // 绑定事件
-    document.getElementById('addMemberBtn').addEventListener('click', addMember);
-    document.getElementById('registration-form').addEventListener('submit', handleSubmit);
+    addBtn.addEventListener('click', addMember);
+    formEl.addEventListener('submit', handleSubmit);
     updateAddButton();
+    
+    console.log('事件绑定完成');
 });
 
 /**
