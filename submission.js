@@ -307,21 +307,17 @@ function handleSubmit(e) {
         return;
     }
     
-    // 使用 FormData 提交数据（支持文件上传）
-    const formData = new FormData();
-    formData.append('teamName', teamName);
-    formData.append('projectName', projectName);
-    formData.append('teamRoles', teamRoles);
-    formData.append('projectDescription', projectDescription);
-    formData.append('projectLink', projectLink);
-    formData.append('submittedAt', new Date().toISOString());
+    // 使用 JSON 格式提交数据（临时方案，避免后端 FormData 解析问题）
+    const submitData = {
+        teamName: teamName,
+        projectName: projectName,
+        teamRoles: teamRoles,
+        projectDescription: projectDescription,
+        projectLink: projectLink,
+        submittedAt: new Date().toISOString()
+    };
     
-    // 添加文件到 FormData
-    uploadedFiles.forEach((file, index) => {
-        formData.append('files', file);
-    });
-    
-    submitSubmission(formData);
+    submitSubmissionJSON(submitData);
 }
 
 /**
@@ -339,10 +335,10 @@ function isValidUrl(url) {
 }
 
 /**
- * 提交成果到后端
- * @param {FormData} formData - 表单数据
+ * 提交成果到后端（JSON 格式）
+ * @param {Object} data - 提交数据
  */
-async function submitSubmission(formData) {
+async function submitSubmissionJSON(data) {
     // 设置提交中状态
     isSubmitting = true;
     const submitButton = document.querySelector('button[type="submit"]');
@@ -354,8 +350,10 @@ async function submitSubmission(formData) {
     try {
         const response = await fetch(`${API_BASE}/submission`, {
             method: 'POST',
-            // 注意：使用 FormData 时不需要设置 Content-Type，浏览器会自动设置
-            body: formData
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         });
         
         const result = await response.json();
