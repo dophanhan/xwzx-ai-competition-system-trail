@@ -1,5 +1,7 @@
 // 报名表单处理脚本
 // 功能：管理队员信息添加/删除，处理表单提交
+// 版本：2026-03-30-BUGFIX-v2
+console.log('=== registration.js 已加载 - 版本 2026-03-30-BUGFIX-v2 ===');
 
 let memberCount = 0;
 const MAX_MEMBERS = 3;
@@ -8,13 +10,31 @@ const MAX_MEMBERS = 3;
 const API_BASE = window.API_CONFIG?.BASE_URL || 'http://localhost:3000/api';
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('报名页面加载完成');
+    
     // 初始化：添加第一个队员
     addMember();
     
+    // 检查元素是否存在
+    const addBtn = document.getElementById('addMemberBtn');
+    const formEl = document.getElementById('registration-form');
+    
+    if (!addBtn) {
+        console.error('找不到添加队员按钮');
+        return;
+    }
+    
+    if (!formEl) {
+        console.error('找不到报名表单');
+        return;
+    }
+    
     // 绑定事件
-    document.getElementById('addMemberBtn').addEventListener('click', addMember);
-    document.getElementById('registration-form').addEventListener('submit', handleSubmit);
+    addBtn.addEventListener('click', addMember);
+    formEl.addEventListener('submit', handleSubmit);
     updateAddButton();
+    
+    console.log('事件绑定完成');
 });
 
 /**
@@ -110,13 +130,16 @@ function handleSubmit(e) {
         return;
     }
     
-    // 收集队员信息
+    // 收集队员信息 - 直接从 DOM 获取实际队员数量
     const members = [];
-    for (let i = 1; i <= memberCount; i++) {
-        const name = document.getElementById(`member-name-${i}`).value.trim();
+    const memberElements = document.querySelectorAll('.member-item');
+    for (let i = 0; i < memberElements.length; i++) {
+        const member = memberElements[i];
+        const nameInput = member.querySelector('input[type="text"]');
+        const name = nameInput.value.trim();
         
         if (!name) {
-            showError(`请输入队员 ${i} 的姓名`);
+            showError(`请输入队员 ${i + 1} 的姓名`);
             return;
         }
         
@@ -146,7 +169,7 @@ function handleSubmit(e) {
  */
 async function submitRegistration(data) {
     try {
-        const response = await fetch(`${API_BASE}/api/registration`, {
+        const response = await fetch(`${API_BASE}/registration`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

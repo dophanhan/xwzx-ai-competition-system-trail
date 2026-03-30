@@ -632,10 +632,11 @@ body::before {
     font-size: 0.85rem;
 }
 
-.footer p {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
+.footer .ai-notice {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.2);
     margin-top: 6px;
+    font-style: italic;
 }
 
 /* 字数统计样式 */
