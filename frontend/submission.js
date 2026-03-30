@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     setupFileUpload();
-    loadTeams();  // 加载队伍列表
+    // loadTeams();  // 不再加载队伍列表，直接输入
     setupCharCount();  // 设置字数统计
     
     console.log('表单元素:', formEl);

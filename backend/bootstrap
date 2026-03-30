@@ -2,15 +2,34 @@
 
 const http = require('http');
 
-// 启动主应用
+// 导入 Express 应用
 const app = require('./app.js');
 
 // 阿里云函数计算自定义运行时 - 必须监听 9000 端口
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 
-const server = http.createServer(app);
+// 创建 HTTP 服务器
+const server = http.createServer((req, res) => {
+    app(req, res);
+});
 
-server.listen(PORT, () => {
-  console.log(`Function started on port ${PORT}`);
-  console.log(`Health check: http://localhost:${PORT}/api/health`);
+// 监听端口
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Function started on port ${PORT}`);
+    console.log(`Health check: http://localhost:${PORT}/api/health`);
+});
+
+// 错误处理
+server.on('error', (err) => {
+    console.error('Server error:', err);
+    process.exit(1);
+});
+
+// 优雅退出
+process.on('SIGTERM', () => {
+    console.log('SIGTERM received, shutting down...');
+    server.close(() => {
+        console.log('Server closed');
+        process.exit(0);
+    });
 });

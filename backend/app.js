@@ -515,11 +515,14 @@ app.get('/api/health', (req, res) => {
 });
 
 // 启动服务器
-app.listen(PORT, () => {
-    console.log(`服务器运行在 http://localhost:${PORT}`);
-    console.log('健康检查：http://localhost:3000/api/health');
-    console.log(`报名表应用 Token: ${FEISHU_REGISTRATION_APP_TOKEN ? '已配置' : '未配置'}`);
-    console.log(`报名表表格 ID: ${FEISHU_REGISTRATION_TABLE_ID || '未配置'}`);
-    console.log(`成果提交表应用 Token: ${FEISHU_SUBMISSION_APP_TOKEN ? '已配置' : '未配置'}`);
-    console.log(`成果提交表格 ID: ${FEISHU_SUBMISSION_TABLE_ID || '未配置'}`);
-});
+// 只在直接运行时启动服务器（自定义运行时由 bootstrap 启动）
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`服务器运行在 http://localhost:${PORT}`);
+        console.log('健康检查：http://localhost:3000/api/health');
+        console.log(`报名表应用 Token: ${FEISHU_REGISTRATION_APP_TOKEN ? '已配置' : '未配置'}`);
+        console.log(`报名表表格 ID: ${FEISHU_REGISTRATION_TABLE_ID || '未配置'}`);
+        console.log(`成果提交表应用 Token: ${FEISHU_SUBMISSION_APP_TOKEN ? '已配置' : '未配置'}`);
+        console.log(`成果提交表格 ID: ${FEISHU_SUBMISSION_TABLE_ID || '未配置'}`);
+    });
+}
